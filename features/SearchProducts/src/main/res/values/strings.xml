@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_search_product">Busca tu productos</string>
+
+
+    <string name="label_search_product">Buscador de productos</string>
+
+    <string name="message_empty_query">La busqueda no puede estar vacia</string>
+
+
+
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hint_search_product">Buscar productos, marcas y más...</string>
+
+    <string name="title_modal_error">Ha ocurrido un error</string>
+
+    <string name="text_button_exit">Salir</string>
+
+</resources>

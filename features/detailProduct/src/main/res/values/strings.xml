@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="title_detail_product">Detalle del producto</string>
+    <string name="product_stock_info">Nuevo | +%1$d En stock</string>
+    <string name="label_product_description">Descripción del Producto</string>
+    <string name="text_button_buy_now">Comprar ahora</string>
+    <string name="text_button_add_card">Agregar al carrito</string>
+    <string name="message_error_get_detail_product">Hubo un error al obtener el detalle del producto</string>
+
+</resources>
