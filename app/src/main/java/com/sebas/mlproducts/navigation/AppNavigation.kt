@@ -14,27 +14,33 @@ import com.sebas.searchproducts.ui.search.SearchProductRoute
 fun AppNavigation() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "searchProduct") {
-        composable("searchProduct") {
+    NavHost(navController = navController, startDestination = Screens.SearchProduct.route) {
+        composable(Screens.SearchProduct.route) {
             SearchProductRoute(
                 onNavigateResult = { query ->
-                    navController.navigate("resultProduct/${query}")
+                    navController.navigate(
+                        Screens.ResultProduct.createRoute(query)
+                    )
                 },
                 onNavigateDetail = { idProduct ->
-                    navController.navigate("detailProduct/${idProduct}")
+                    navController.navigate(
+                        Screens.DetailProduct.createRoute(idProduct)
+                    )
                 }
             )
         }
 
         composable(
-            "resultProduct/{query}",
+            Screens.ResultProduct.route,
             arguments = listOf(
                 navArgument("query") { type = NavType.StringType }
             )
         ) {
             ResultProductRoute(
                 onNavigateToDetails = { idProduct ->
-                    navController.navigate("detailProduct/${idProduct}")
+                    navController.navigate(
+                        Screens.DetailProduct.createRoute(idProduct)
+                    )
                 },
                 onNavigationBack = {
                     navController.popBackStack()
@@ -43,7 +49,7 @@ fun AppNavigation() {
         }
 
         composable(
-            "detailProduct/{id}",
+            Screens.DetailProduct.route,
             arguments = listOf(
                 navArgument("id") { type = NavType.StringType }
             )
@@ -53,7 +59,9 @@ fun AppNavigation() {
                     navController.popBackStack()
                 },
                 onNavigateSearchProduct = {
-                    navController.navigate("searchProduct")
+                    navController.navigate(
+                        Screens.SearchProduct.route
+                    )
                 }
             )
         }

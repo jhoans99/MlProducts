@@ -32,7 +32,6 @@ class ProductRepositoryImpl @Inject constructor(
         emit(Result.Success(listProduct))
 
     }.catch {
-        Log.d("Error", "fetchProductsByQuery: ${it.cause}")
         emit(Result.Error(SEARCH_ERROR))
     }
 
@@ -41,7 +40,6 @@ class ProductRepositoryImpl @Inject constructor(
         val response = dataSource.fetchDetailsProduct(id)
         emit(Result.Success(response.toDomain()))
     }.catch {
-        Log.d("Error", "fetchDetailsProduct: ${it.cause}")
         emit(Result.Error(DETAIL_ERROR))
     }
 

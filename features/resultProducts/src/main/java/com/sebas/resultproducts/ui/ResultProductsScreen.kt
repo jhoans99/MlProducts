@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -144,26 +145,45 @@ fun ResultProductBody(
             color = Black
         )
 
-        LazyColumn(
-            state = listState,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            items(uiState.listProduct, key = { it.id }) { products ->
-                ProductsItem(products, modifier) {
-                    onNavigateToDetails(it)
+        when {
+            uiState.listProduct.isNotEmpty() -> {
+                LazyColumn(
+                    state = listState,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    items(uiState.listProduct, key = { it.id }) { products ->
+                        ProductsItem(products, modifier) {
+                            onNavigateToDetails(it)
+                        }
+                    }
+
+                    if (uiState.isLoading && uiState.listProduct.isNotEmpty()) {
+                        item {
+                            CircularProgressIndicator(
+                                modifier = Modifier
+                                    .padding(16.dp)
+                                    .align(Alignment.CenterHorizontally)
+                            )
+                        }
+                    }
                 }
             }
 
-            if (uiState.isLoading && uiState.listProduct.isNotEmpty()) {
-                item {
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .align(Alignment.CenterHorizontally)
-                    )
-                }
+            else -> {
+                Text(
+                    text = stringResource(
+                        com.sebas.resultproducts.R.string.text_no_information_available
+                    ),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Black,
+                    modifier = Modifier
+                        .padding(top = 50.dp),
+                    textAlign = TextAlign.Center
+                )
             }
         }
+
 
         LaunchedEffect(listState) {
             snapshotFlow { listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index }

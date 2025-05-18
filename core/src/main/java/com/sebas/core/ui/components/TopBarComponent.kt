@@ -32,7 +32,7 @@ fun TopBarComponent(
             when {
                 isNavigation -> {
                     IconButton(onClick = {
-                        action
+                        action()
                     }) {
                         Icon(
                             imageVector = Icons.Filled.KeyboardArrowLeft,

@@ -5,4 +5,6 @@
 
 
     <string name="message_error_get_products">No se lograron obtener los resultados</string>
+
+    <string name="text_no_information_available">No se encontra información para esta busqueda</string>
 </resources>
